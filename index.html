@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angry Dragon Cursor</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="overlay">
+    <h1>🐉 Angry Dragon Cursor</h1>
+    <p>Move your mouse. The dragon will chase forever but never catch the cursor.</p>
+    <p>Click anywhere and it breathes fire 🔥</p>
+  </main>
+
+  <div id="dragon" aria-hidden="true">
+    <div class="dragon-body">
+      <div class="dragon-eye left"></div>
+      <div class="dragon-eye right"></div>
+      <div class="dragon-horn left"></div>
+      <div class="dragon-horn right"></div>
+      <div class="dragon-mouth"></div>
+      <div class="dragon-wing left"></div>
+      <div class="dragon-wing right"></div>
+      <div class="dragon-tail"></div>
+    </div>
+    <div id="fire" class="fire"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

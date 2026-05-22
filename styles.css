@@ -1,0 +1,196 @@
+:root {
+  --bg-1: #0b1020;
+  --bg-2: #1a1038;
+  --text: #e6f0ff;
+  --dragon: #2dd36f;
+  --dragon-dark: #1da357;
+  --dragon-belly: #b8ffd0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  cursor: crosshair;
+  overflow: hidden;
+  color: var(--text);
+  background: radial-gradient(circle at 30% 20%, #2d1b66, var(--bg-2) 40%, var(--bg-1) 80%);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 1;
+  top: 24px;
+  left: 24px;
+  max-width: 420px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(7, 9, 25, 0.52);
+  backdrop-filter: blur(5px);
+}
+
+.overlay h1 {
+  margin: 0 0 8px;
+}
+
+.overlay p {
+  margin: 4px 0;
+}
+
+#dragon {
+  --size: 70px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--size);
+  height: var(--size);
+  transform: translate(-100px, -100px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.dragon-body {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, var(--dragon), var(--dragon-dark));
+  border-radius: 50% 55% 48% 52%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  animation: bob 0.35s infinite alternate ease-in-out;
+}
+
+.dragon-body::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 24px;
+  background: var(--dragon-belly);
+  border-radius: 30px;
+  left: 16px;
+  top: 34px;
+}
+
+.dragon-eye {
+  position: absolute;
+  width: 9px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  top: 20px;
+}
+
+.dragon-eye::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 7px;
+  background: #0f1016;
+  border-radius: 8px;
+  left: 3px;
+  top: 2px;
+}
+
+.dragon-eye.left { left: 22px; }
+.dragon-eye.right { left: 40px; }
+
+.dragon-mouth {
+  position: absolute;
+  width: 24px;
+  height: 10px;
+  left: 24px;
+  top: 40px;
+  border-bottom: 3px solid #491313;
+  border-radius: 0 0 16px 16px;
+}
+
+.dragon-horn {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 18px solid #f2e9ff;
+  top: -8px;
+}
+
+.dragon-horn.left { left: 14px; transform: rotate(-20deg); }
+.dragon-horn.right { left: 44px; transform: rotate(20deg); }
+
+.dragon-wing {
+  position: absolute;
+  width: 22px;
+  height: 24px;
+  background: #27b462;
+  top: 20px;
+  border-radius: 50% 50% 50% 0;
+  transform-origin: 0 0;
+  animation: flap 0.3s infinite alternate ease-in-out;
+}
+
+.dragon-wing.left { left: -10px; transform: rotate(-20deg); }
+.dragon-wing.right { right: -10px; transform: scaleX(-1) rotate(-20deg); }
+
+.dragon-tail {
+  position: absolute;
+  width: 24px;
+  height: 8px;
+  background: #1a9c52;
+  border-radius: 999px;
+  right: -14px;
+  top: 46px;
+  transform: rotate(20deg);
+}
+
+.fire {
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 64px;
+  top: 34px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fire.active {
+  animation: fireBreath 0.42s ease-out forwards;
+}
+
+@keyframes fireBreath {
+  0% {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    transform: translateX(0) scale(0.2);
+    filter: blur(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    width: 115px;
+    height: 35px;
+    transform: translateX(6px) scale(1);
+    border-radius: 0 80% 80% 0;
+    background: linear-gradient(90deg, #fff6a7 0%, #ffe26a 18%, #ff9c2f 52%, #ff4c14 80%, rgba(255, 0, 0, 0) 100%);
+    filter: blur(1px);
+  }
+}
+
+@keyframes flap {
+  from { transform: rotate(-26deg); }
+  to { transform: rotate(-8deg); }
+}
+
+@keyframes bob {
+  from { transform: translateY(-1px); }
+  to { transform: translateY(1px); }
+}
